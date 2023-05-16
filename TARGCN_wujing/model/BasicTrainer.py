@@ -175,6 +175,7 @@ class Trainer(object):
         try:
             # send log
             # send_email(str(self.args.log_dir) + "/run.log")
+            pass
         except:
             print("save error!!!")
 
