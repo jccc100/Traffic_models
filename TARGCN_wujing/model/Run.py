@@ -96,7 +96,7 @@ else:
 
 #gen adj
 print("************",args.dataset)
-distance_file='../data/{}/distance.csv'.format(args.dataset)
+distance_file='../data/{}/distance.csv'.format(DATASET)
 print("************",distance_file)
 def get_adjacent_matrix(distance_file: str, num_nodes: int, id_file: str = None, graph_type="distance") -> np.array:
     """
@@ -199,7 +199,7 @@ trainer = Trainer(model, loss, optimizer, train_loader, val_loader, test_loader,
 if args.mode == 'train':
     trainer.train()
 elif args.mode == 'test':
-    model.load_state_dict(torch.load('model_para/wujing/epoch_38.pth'.format(args.dataset)))
+    model.load_state_dict(torch.load('model_para/{}/best_model.pth'.format(args.dataset)))
     print("Load saved model")
     trainer.test(model, trainer.args, test_loader, scaler, trainer.logger)
 else:

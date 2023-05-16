@@ -24,7 +24,7 @@ class Trainer(object):
         self.train_per_epoch = len(train_loader)
         if val_loader != None:
             self.val_per_epoch = len(val_loader)
-        self.best_path = os.path.join(self.args.log_dir, 'best_model.pth')
+        self.best_path = os.path.join('model_para/{}'.format(args.dataset), 'best_model.pth')
         self.loss_figure_path = os.path.join(self.args.log_dir, 'loss.png')
         #log
         if os.path.isdir(args.log_dir) == False and not args.debug:
@@ -211,8 +211,8 @@ class Trainer(object):
             y_pred = torch.cat(y_pred, dim=0)
         else:
             y_pred = scaler.inverse_transform(torch.cat(y_pred, dim=0))
-        np.save('./{}_true.npy'.format(args.dataset), y_true.cpu().numpy())
-        np.save('./{}_pred.npy'.format(args.dataset), y_pred.cpu().numpy())
+        np.save('model_para/{}/{}_true.npy'.format(args.dataset,args.dataset), y_true.cpu().numpy())
+        np.save('model_para/{}/{}_pred.npy'.format(args.dataset,args.dataset), y_pred.cpu().numpy())
         # try:
         #     # send_email('./{}_true.npy'.format(args.dataset))
         #     # send_email('./{}_pred.npy'.format(args.dataset))
@@ -222,10 +222,10 @@ class Trainer(object):
         for t in range(y_true.shape[1]):
             mae, rmse, mape, _, _ = All_Metrics(y_pred[:, t, ...], y_true[:, t, ...],
                                                 args.mae_thresh, args.mape_thresh)
-            logger.info("Horizon {:02d}, MAE: {:.2f}, RMSE: {:.2f}, MAPE: {:.4f}%".format(
-                t + 1, mae, rmse, mape*100))
+            # logger.info("Horizon {:02d}, MAE: {:.2f}, RMSE: {:.2f}, MAPE: {:.4f}%".format(
+            #     t + 1, mae, rmse, mape*100))
         mae, rmse, mape, _, _ = All_Metrics(y_pred, y_true, args.mae_thresh, args.mape_thresh)
-        logger.info("Average Horizon, MAE: {:.2f}, RMSE: {:.2f}, MAPE: {:.4f}%".format(
+        logger.info("MAE: {:.2f}, RMSE: {:.2f}, MAPE: {:.4f}%".format(
                     mae, rmse, mape*100))
 
     @staticmethod
