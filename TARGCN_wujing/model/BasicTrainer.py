@@ -172,12 +172,12 @@ class Trainer(object):
         self.model.load_state_dict(best_model)
         #self.val_epoch(self.args.epochs, self.test_loader)
         self.test(self.model, self.args, self.test_loader, self.scaler, self.logger)
-        try:
-            # send log
-            # send_email(str(self.args.log_dir) + "/run.log")
-            pass
-        except:
-            print("save error!!!")
+        # try:
+        #     # send log
+        #     # send_email(str(self.args.log_dir) + "/run.log")
+        #
+        # except:
+        #     print("save error!!!")
 
     def save_checkpoint(self):
         state = {
