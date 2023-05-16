@@ -97,7 +97,7 @@ else:
 #gen adj
 print("************",args.dataset)
 distance_file='../data/{}/distance.csv'.format(args.dataset)
-print(distance_file)
+print("************",distance_file)
 def get_adjacent_matrix(distance_file: str, num_nodes: int, id_file: str = None, graph_type="distance") -> np.array:
     """
     :param distance_file: str, path of csv file to save the distances between nodes.
