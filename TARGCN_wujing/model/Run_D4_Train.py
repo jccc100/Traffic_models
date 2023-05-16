@@ -17,10 +17,10 @@ from lib.TrainInits import init_seed
 from lib.dataloader import get_dataloader
 from lib.TrainInits import print_model_parameters
 
-# Mode = 'train'
-Mode = 'test'
+Mode = 'train'
+# Mode = 'test'
 DEBUG = 'True'
-DATASET = 'wujing'
+DATASET = 'PEMSD4'
 DEVICE = 'cuda:0'
 MODEL = 'TARGCN'
 
