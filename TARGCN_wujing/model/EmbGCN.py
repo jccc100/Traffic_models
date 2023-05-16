@@ -78,7 +78,6 @@ class EmbGCN(nn.Module):
 
         x_gconv = torch.einsum('bni,nio->bno', x_g, weights) + bias     #b, N, dim_out
         return x_gconv+torch.sigmoid(x_static)*x_static
-        # return x_gconv
 
 class EmbGCN_noGate(nn.Module):
     def __init__(self, dim_in, dim_out, adj,cheb_k, embed_dim):
